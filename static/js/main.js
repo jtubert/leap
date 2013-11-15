@@ -1,4 +1,5 @@
 var socket = null;
+var counter = 0;
 
 if(window.location.host.toString().indexOf("gentle-meadow-5995.herokuapp.com") > -1){
 	socket = io.connect(window.location.host.toString());
@@ -37,6 +38,10 @@ var Loop = function(param) {
 			this.audio 			= audio;
 
 			this.param			= param;
+
+			
+			Graphics.createShape(audio.id,counter);
+			counter++;
 		},
 
 		
@@ -45,6 +50,8 @@ var Loop = function(param) {
 		{
 			if (id !== this.id) { this.audio.play(); } else { this.changeState(false); }
 			
+			Graphics.updateColor(id,'#00FF00');
+
 			if(socket){
 				socket.emit("playSong",id);
 			}
@@ -53,6 +60,9 @@ var Loop = function(param) {
 
 		pause : function(id)
 		{
+			
+			Graphics.updateColor(id,'#FF0000');
+
 			this.changeState(true);
 			if(socket){
 				socket.emit("pauseSong",id);
@@ -88,7 +98,7 @@ var Loop = function(param) {
 
 		play	: function(id)
 		{
-			this.changeState('play', id);
+			this.changeState('play', id);			
 		},
 
 		pause	: function(id)
@@ -135,6 +145,9 @@ var Loop = function(param) {
 			for (var loop in this.loops) {
 				if (playing.indexOf(loop) != -1) {
 					this.loops[loop].play(loop);
+
+					//console.log(loop);
+
 				} else {
 					this.loops[loop].pause(loop);
 				}
@@ -181,7 +194,7 @@ var Loop = function(param) {
 					}
 					document.getElementById('volume').innerHTML = 'Volume: ' + Math.round(volOutput*100);
 
-					Graphics.updateCircle(Math.round(volOutput*100));
+					Graphics.resizeAll(Math.round(volOutput*100));
 				} 
 			}
 		}

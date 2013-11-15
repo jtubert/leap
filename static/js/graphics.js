@@ -1,36 +1,59 @@
-//http://www.createjs.com/#!/EaselJS
+//http://paperjs.org/
+var graphicsArr = new Array();
 
-var stage = new createjs.Stage("graphics");
-var circle = new createjs.Shape();
+
 
 var Graphics = {
-	init: function() {
-		this.drawCircle();
+	init: function() {		
+		var canvas = document.getElementById('graphics');		
+		paper.setup(canvas);		
 	},
 
-	drawCircle: function(){
-		
-		circle.graphics.beginFill("red").drawCircle(0, 0, 50);
-		circle.x = 100;
-		circle.y = 100;
-		stage.addChild(circle);
+	createShape: function(id,x){
+		/*
+		graphicsArr[id] = new paper.Path.Circle({
+			center: [x*100, 50],
+			radius: 35
+		});
+		*/
 
-		stage.update();
+		graphicsArr[id] = new paper.Path.Rectangle([x*100, 20], [90, 90]);
+
+		graphicsArr[id]["text"] = new paper.PointText({
+			point: [x*100,150],
+			justification: 'left',
+			fontSize: 13,
+			fillColor: 'black'
+		});
+
+		graphicsArr[id]["text"] .content = id;
+
+		//graphicsArr[id].strokeColor = '#ff0000';
+		graphicsArr[id].fillColor = 'blue';
+
+
+
+		paper.view.draw();
+
+		
+		paper.view.onFrame = function(event) {			
+			//graphicsArr[id].rotate(3);
+			//graphicsArr[id].fillColor.hue += 1;
+		}
+		
 	},
 
-	updateCircle: function(y){
-		stage.removeChild(circle);
-		
-		circle = new createjs.Shape();
-		circle.graphics.beginFill("red").drawCircle(0, 0, y);
-		circle.x = 100;
-		circle.y = y;
-		stage.addChild(circle);
+	updateColor: function(id,color){		
+		if(graphicsArr[id]){
+			graphicsArr[id].fillColor = color;			
+		}		
+	},
 
-
-		circle.alpha = y/100;
-
-		stage.update();
+	resizeAll: function(scale){
+		for (var id in graphicsArr) {
+			//graphicsArr[id].fillColor.hue = scale;
+			graphicsArr[id].fillColor.alpha = scale/100;			
+		};		
 	}
 }
 
