@@ -216,8 +216,10 @@ var Loop = function(param) {
 				obj.hands[0].palmPosition = [];
 				obj.hands[0].palmPosition[0] = {};
 				obj.hands[0].palmPosition[1] = {};
-				if(frame.hands[0].palmPosition[1]){
-					obj.hands[0].palmPosition[1]  = frame.hands[0].palmPosition[1];
+				if(frame.hands[0].palmPosition){
+					if(frame.hands[0].palmPosition[1]){
+						obj.hands[0].palmPosition[1]  = frame.hands[0].palmPosition[1];
+					}
 				}				
 			}
 			
