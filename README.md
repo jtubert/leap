@@ -1,4 +1,4 @@
 leap
 ====
 
-LeapMotion experiments
+LeapMotion experiments v1.0
