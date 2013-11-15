@@ -228,8 +228,6 @@ var Loop = function(param) {
 	});
 
 	
-
-	
 	/*
 	socket.on('message', function (data) {
 		console.log("socket.on: " + data);
