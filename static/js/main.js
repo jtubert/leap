@@ -154,8 +154,11 @@ var Loop = function(param) {
 	      		var yVal = 0;
 
 	      		yVal = hand.palmPosition;
-	      		//volChange = parseFloat(yVal[1].toFixed(1));
-	      		//volOutput = volChange/yThreshold;
+	      		if(yVal && yVal[1]){
+	      			volChange = parseFloat(yVal[1].toFixed(1));
+	      			volOutput = volChange/yThreshold;
+	      		}
+	      		
     		}	
 
     		if (volOutput > 1) 
@@ -196,16 +199,12 @@ var Loop = function(param) {
 
 	Controller.init(loops);
 
+	var counter = 0;
+
 	Leap.loop(function(frame) { 
 		Controller.getFrame(frame);
 
 		if(socket){
-			//frame.hands[0].palmPosition
-			//frame.hands.length
-			//frame.pointables.length
-
-			
-
 			var obj = {};
 			obj.pointables = {};
 			obj.pointables.length = frame.pointables.length;
@@ -221,9 +220,7 @@ var Loop = function(param) {
 						obj.hands[0].palmPosition[1]  = frame.hands[0].palmPosition[1];
 					}
 				}				
-			}
-			
-
+			}		
 			
 			socket.emit("frame",obj);
 		} 
