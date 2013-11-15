@@ -154,8 +154,8 @@ var Loop = function(param) {
 	      		var yVal = 0;
 
 	      		yVal = hand.palmPosition;
-	      		volChange = parseFloat(yVal[1].toFixed(1));
-	      		volOutput = volChange/yThreshold;
+	      		//volChange = parseFloat(yVal[1].toFixed(1));
+	      		//volOutput = volChange/yThreshold;
     		}	
 
     		if (volOutput > 1) 
