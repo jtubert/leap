@@ -193,7 +193,7 @@ var Loop = function(param) {
 					if(socket){
 						//socket.emit("volume",Math.round(volOutput*100));
 					}
-					document.getElementById('volume').innerHTML = 'Volume: ' + Math.round(volOutput*100);
+					//document.getElementById('volume').innerHTML = 'Volume: ' + Math.round(volOutput*100);
 
 					Graphics.resizeAll(Math.round(volOutput*100));
 					Graphics.updateVolume("Volume:" + Math.round(volOutput*100));
