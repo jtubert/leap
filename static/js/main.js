@@ -126,7 +126,8 @@ var Loop = function(param) {
 				//socket.emit("status",{hands:frame.hands.length, pointables:frame.pointables.length});
 			}
 
-			document.getElementById('status').innerHTML = 'Hands: ' + frame.hands.length + ', Pointables: ' + frame.pointables.length;
+			Graphics.updateStatus('Hands: ' + frame.hands.length + ', Pointables: ' + frame.pointables.length);
+			//document.getElementById('status').innerHTML = 'Hands: ' + frame.hands.length + ', Pointables: ' + frame.pointables.length;
 			this.raiseEvent(frame.pointables.length);
 			this.setGlobalVolume(frame, frame.pointables.length);
 
@@ -195,6 +196,7 @@ var Loop = function(param) {
 					document.getElementById('volume').innerHTML = 'Volume: ' + Math.round(volOutput*100);
 
 					Graphics.resizeAll(Math.round(volOutput*100));
+					Graphics.updateVolume("Volume:" + Math.round(volOutput*100));
 				} 
 			}
 		}
@@ -211,6 +213,7 @@ var Loop = function(param) {
 	loops.push(new Loop({mp3:'loops/string_loop_3.mp3', muted:true, volume:1, hands:2, pointables:6}));
 
 	Controller.init(loops);
+
 
 	var counter = 0;
 

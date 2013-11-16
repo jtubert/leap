@@ -1,12 +1,45 @@
 //http://paperjs.org/
 var graphicsArr = new Array();
-
+var volumeText;
+var statusText;
+var xMargin = 5;
+var yMargin = 20;
 
 
 var Graphics = {
 	init: function() {		
 		var canvas = document.getElementById('graphics');		
-		paper.setup(canvas);		
+		paper.setup(canvas);
+
+		this.createText();		
+	},
+
+	createText: function(){
+		statusText = new paper.PointText({
+			point: [xMargin,yMargin],
+			justification: 'left',
+			fontSize: 13,
+			fillColor: 'white'
+		});
+		statusText.content = "Hands: 0, Pointables: 0";
+
+		volumeText = new paper.PointText({
+			point: [xMargin,35],
+			justification: 'left',
+			fontSize: 13,
+			fillColor: 'white'
+		});
+		volumeText.content = "Volume: 0";
+
+		
+	},
+
+	updateVolume: function(txt){
+		volumeText.content = txt;
+	},
+
+	updateStatus: function(txt){
+		statusText.content = txt;
 	},
 
 	createShape: function(id,x){
@@ -17,13 +50,13 @@ var Graphics = {
 		});
 		*/
 
-		graphicsArr[id] = new paper.Path.Rectangle([x*100, 20], [90, 90]);
+		graphicsArr[id] = new paper.Path.Rectangle([(x*100)+xMargin, 50], [90, 90]);
 
 		graphicsArr[id]["text"] = new paper.PointText({
-			point: [x*100,150],
+			point: [(x*100)+xMargin,170],
 			justification: 'left',
 			fontSize: 13,
-			fillColor: 'black'
+			fillColor: 'white'
 		});
 
 		graphicsArr[id]["text"] .content = id;
