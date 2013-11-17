@@ -17,29 +17,7 @@ var Graphics = {
 		paper.setup(canvas);
 		xOffset = window.innerWidth/3;
 
-		this.createText();		
-	},
-
-	createText: function(){
-		statusText = new paper.PointText({
-			point: [xMargin,yMargin],
-			justification: 'left',
-			fontSize: 13,
-			fillColor: 'white'
-		});
-		statusText.content = "Hands: 0, Pointables: 0";
-
-		
-
-		
-	},
-
-	updateVolume: function(txt){
-		volumeText.content = txt;
-	},
-
-	updateStatus: function(txt){
-		statusText.content = txt;
+			
 	},
 
 	createShape: function(id,x){
@@ -59,12 +37,12 @@ var Graphics = {
 		volumeShape.fillColor = 'red';
 
 		volumeText = new paper.PointText({
-			point: [xOffset-20,yOffset+10],
-			justification: 'left',
+			point: [xOffset,yOffset+10],
+			justification: 'center',
 			fontSize: 23,
 			fillColor: 'white'
 		});
-		volumeText.content = "100";
+		//volumeText.content = "100";
 
 
 
@@ -82,8 +60,8 @@ var Graphics = {
 
 		graphicsArr[id]["text"].content = id;
 
-		//graphicsArr[id].strokeColor = '#ff0000';
-		graphicsArr[id].fillColor = 'blue';
+		graphicsArr[id].strokeColor = '#ffffff';
+		graphicsArr[id].fillColor = 'black';
 
 
 
@@ -92,7 +70,7 @@ var Graphics = {
 		
 		paper.view.onFrame = function(event) {			
 			//graphicsArr[id].rotate(3);
-			graphicsArr[id].fillColor.hue += 1;
+			//graphicsArr[id].fillColor.hue += 1;
 
 			
 			graphicsArr[id]["angle"]+=1;
@@ -106,15 +84,16 @@ var Graphics = {
 		
 	},
 
-	updateScale: function(id,scale){		
-		if(graphicsArr[id]){
-			graphicsArr[id].scale(scale);			
-		}		
+	updateVolume: function(txt){
+		volumeText.content = txt;
+		volumeShape.fillColor.hue = txt;
 	},
 
-	scaleVolume: function(scale){
-		volumeShape.scale(scale/100);
-	}
+	updateColor: function(id,color){		
+		if(graphicsArr[id]){
+			graphicsArr[id].fillColor = color;			
+		}		
+	},
 }
 
 Graphics.init();

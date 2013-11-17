@@ -53,7 +53,7 @@ var Loop = function(param) {
 		{
 			if (id !== this.id) { this.audio.play(); } else { this.changeState(false); }
 			
-			Graphics.updateScale(id,2);
+			Graphics.updateColor(id,"red");
 
 			if(socket){
 				socket.emit("playSong",id);
@@ -64,7 +64,7 @@ var Loop = function(param) {
 		pause : function(id)
 		{
 			
-			Graphics.updateScale(id,1);
+			Graphics.updateColor(id,"black");
 
 			this.changeState(true);
 			if(socket){
@@ -129,7 +129,6 @@ var Loop = function(param) {
 				//socket.emit("status",{hands:frame.hands.length, pointables:frame.pointables.length});
 			}
 
-			Graphics.updateStatus('Hands: ' + frame.hands.length + ', Pointables: ' + frame.pointables.length);
 			//document.getElementById('status').innerHTML = 'Hands: ' + frame.hands.length + ', Pointables: ' + frame.pointables.length;
 			this.raiseEvent(frame.pointables.length);
 			this.setGlobalVolume(frame, frame.pointables.length);
@@ -198,8 +197,8 @@ var Loop = function(param) {
 					}
 					//document.getElementById('volume').innerHTML = 'Volume: ' + Math.round(volOutput*100);
 
-					Graphics.scaleVolume(Math.round(volOutput));
-					Graphics.updateVolume("Volume:" + Math.round(volOutput*100));
+					
+					Graphics.updateVolume(Math.round(volOutput*100));
 				} 
 			}
 		}
