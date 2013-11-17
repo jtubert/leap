@@ -97,8 +97,6 @@ var Graphics = {
 
 			graphicsArr[id].position = [x+xOffset,y+yOffset];
 			graphicsArr[id]["text"].position = [x+xOffset,y+yOffset+40];
-			
-
 		}
 		
 	},
