@@ -41,6 +41,9 @@ var Loop = function(param) {
 
 			
 			Graphics.createShape(audio.id,counter);
+
+
+
 			counter++;
 		},
 
@@ -50,7 +53,7 @@ var Loop = function(param) {
 		{
 			if (id !== this.id) { this.audio.play(); } else { this.changeState(false); }
 			
-			Graphics.updateColor(id,'#00FF00');
+			Graphics.updateScale(id,2);
 
 			if(socket){
 				socket.emit("playSong",id);
@@ -61,7 +64,7 @@ var Loop = function(param) {
 		pause : function(id)
 		{
 			
-			Graphics.updateColor(id,'#FF0000');
+			Graphics.updateScale(id,1);
 
 			this.changeState(true);
 			if(socket){
