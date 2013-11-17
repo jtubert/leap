@@ -198,7 +198,7 @@ var Loop = function(param) {
 					}
 					//document.getElementById('volume').innerHTML = 'Volume: ' + Math.round(volOutput*100);
 
-					Graphics.resizeAll(Math.round(volOutput*100));
+					Graphics.scaleVolume(Math.round(volOutput));
 					Graphics.updateVolume("Volume:" + Math.round(volOutput*100));
 				} 
 			}

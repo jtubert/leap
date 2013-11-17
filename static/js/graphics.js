@@ -8,6 +8,7 @@ var gRadius = 150;
 var dtr = Math.PI/180;	
 var xOffset = 200;
 var yOffset = 200;
+var volumeShape;
 
 
 var Graphics = {
@@ -28,13 +29,7 @@ var Graphics = {
 		});
 		statusText.content = "Hands: 0, Pointables: 0";
 
-		volumeText = new paper.PointText({
-			point: [xMargin,35],
-			justification: 'left',
-			fontSize: 13,
-			fillColor: 'white'
-		});
-		volumeText.content = "Volume: 0";
+		
 
 		
 	},
@@ -56,12 +51,22 @@ var Graphics = {
 		var y = (gRadius*Math.sin(angle));
 		
 
-		/*
-		graphicsArr[id] = new paper.Path.Circle({
-			center: [x*200, y+200],
-			radius: 25
+		
+		volumeShape = new paper.Path.Circle({
+			center: [xOffset, 200],
+			radius: 50
 		});
-		*/
+		volumeShape.fillColor = 'red';
+
+		volumeText = new paper.PointText({
+			point: [xOffset-20,yOffset+10],
+			justification: 'left',
+			fontSize: 23,
+			fillColor: 'white'
+		});
+		volumeText.content = "100";
+
+
 
 
 		graphicsArr[id] = new paper.Path.Rectangle([x+xOffset, y+yOffset], [40, 40]);
@@ -101,23 +106,14 @@ var Graphics = {
 		
 	},
 
-	updateColor: function(id,color){		
-		if(graphicsArr[id]){
-			graphicsArr[id].fillColor = color;			
-		}		
-	},
-
 	updateScale: function(id,scale){		
 		if(graphicsArr[id]){
 			graphicsArr[id].scale(scale);			
 		}		
 	},
 
-	resizeAll: function(scale){
-		for (var id in graphicsArr) {
-			//graphicsArr[id].fillColor.hue = scale;
-			graphicsArr[id].fillColor.alpha = scale/100;			
-		};		
+	scaleVolume: function(scale){
+		volumeShape.scale(scale/100);
 	}
 }
 
