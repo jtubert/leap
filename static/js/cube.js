@@ -1,17 +1,17 @@
-var Cube = {	
+var volOutputX = 0;
+var volOutputY = 0;
+var volOutputZ = 0;	
+var yThreshold = 300.0;//max out at millimeters away from sensor
+var yVal = 0;
 
+var Cube = {
 	init : function(param){
 		
 	},
 
-	loop: function(frame){
-		var yThreshold = 300.0;//max out at millimeters away from sensor
-		var volOutputX = 0;
-		var volOutputY = 0;
-		var volOutputZ = 0;
-
+	loop: function(frame){		
 		var hand = frame.hands[0];//not accounting for two hands - not sure what Bryan's intention was
-	    var yVal = 0;
+	    
 		if(hand && hand.palmPosition){
 			yVal = hand.palmPosition;
 	  		if(yVal && yVal[1]){
