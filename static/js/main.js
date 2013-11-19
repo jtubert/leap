@@ -1,7 +1,7 @@
 var socket = null;
 var counter = 0;
 
-if(window.location.host.toString().indexOf("gentle-meadow-5995.herokuapp.com") > -1){
+if(window.location.host.toString().indexOf("jtubert-leap.herokuapp.com") > -1){
 	socket = io.connect(window.location.host.toString());
 }
 
@@ -222,6 +222,8 @@ var Loop = function(param) {
 	Leap.loop(function(frame) { 
 		Controller.getFrame(frame);
 
+		//console.log(frame);
+
 		if(socket){
 			var obj = {};
 			obj.pointables = {};
@@ -240,7 +242,7 @@ var Loop = function(param) {
 				}				
 			}
 
-			console.log(obj);		
+
 			
 			socket.emit("frame",obj);
 		} 
@@ -277,7 +279,7 @@ var Loop = function(param) {
 		});
 
 		socket.on('frame', function (data) {
-			console.log("data: ",data);
+			//console.log("data: ",data);
 			Controller.getFrame(data);
 		});
 	}
