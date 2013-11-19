@@ -38,6 +38,7 @@ io.sockets.on('connection', function (socket) {
 */
 
 	socket.on('frame',function(data){
+		socket.emit('frame', data);	
 		socket.broadcast.emit('frame', data);
 	});    
 });

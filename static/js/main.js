@@ -238,7 +238,9 @@ var Loop = function(param) {
 						obj.hands[0].palmPosition[1]  = frame.hands[0].palmPosition[1];
 					}
 				}				
-			}		
+			}
+
+			console.log(obj);		
 			
 			socket.emit("frame",obj);
 		} 
