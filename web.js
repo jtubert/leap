@@ -17,6 +17,7 @@ var port = process.env.PORT || 5000;
 	});
 
 io.sockets.on('connection', function (socket) {	
+	/*
 	socket.on('volume',function(data){		
 		socket.broadcast.emit('volume', data);
 		//socket.emit('message', "volume: "+data);		
@@ -34,6 +35,7 @@ io.sockets.on('connection', function (socket) {
 	socket.on('status',function(data){
 		socket.broadcast.emit('status', data);
 	});	
+*/
 
 	socket.on('frame',function(data){
 		socket.broadcast.emit('frame', data);

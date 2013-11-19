@@ -30,11 +30,16 @@ var Cube = {
 	    var y = volOutputY*360;	
 	    var z = volOutputZ*360;	    
 
+		$('#cube').css('-webkit-transform', 'rotate3d('+x+', '+y+', '+z+', '+x+'deg)');
+		$('#cube').css('-webkit-transform', 'rotate3d('+x+', '+y+', '+z+', '+y+'deg)');
 		$('#cube').css('-webkit-transform', 'rotate3d('+x+', '+y+', '+z+', '+z+'deg)');
+		
+		/*
 		$('#cube').css('-moz-transform', 'rotate3d('+x+', '+y+', '+z+', '+z+'deg)');
 		$('#cube').css('-ms-transform', 'rotate3d('+x+', '+y+', '+z+', '+z+'deg)');
 		$('#cube').css('-o-transform', 'rotate3d('+x+', '+y+', '+z+', '+z+'deg)');
 		$('#cube').css('transform', 'rotate3d('+x+', '+y+', '+z+', '+z+'deg)');
+		*/
 	}
 }
 
